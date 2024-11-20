@@ -1,18 +1,18 @@
 use risc0_zkvm::guest::env;
 use std::io::Read;
 
-use sev_agent_verifier_guest::{deserialize_guest_input, utils::ApiOpt};
+use guest_program_lib::{deserialize_guest_input, ApiOpt};
 use sev_snp_lib::{
     attestation::AttestationReport,
     get_processor_model_from_vek,
     verify::{verify_attestation_signature, verify_attestation_tcb},
 };
 use tpm_lib::{
-    tpm::{FromBytes, TPMSAttest},
+    // tpm::{FromBytes, TPMSAttest},
     verify_tpm_quote_and_pcr10,
 };
 use x509_verifier_rust_crypto::{
-    sha2::{Digest, Sha256},
+    // sha2::{Digest, Sha256},
     verify_x509_chain,
     x509_parser::prelude::*,
 };

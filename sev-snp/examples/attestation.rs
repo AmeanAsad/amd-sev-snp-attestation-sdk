@@ -1,4 +1,4 @@
-use sev_snp::AttestationReport;
+use sev_snp::{AttestationReport, SevSnp};
 
 fn main() {
     let raw_bytes = vec![

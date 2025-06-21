@@ -7,16 +7,16 @@ mod verifier;
 pub mod device;
 pub mod error;
 
+pub use sev::firmware::guest::AttestationReport;
+
+use crate::error::{Result, SevSnpError};
+use crate::utils::AttestationReportExt;
 use certs::CertificateChain;
 use device::{DerivedKeyOptions, Device, ReportOptions};
 use kds::KDS;
 use sev::certs::snp::Certificate;
-use sev::firmware::guest::AttestationReport;
 use sev::firmware::host::CertType;
 use std::collections::HashMap;
-
-use crate::error::{Result, SevSnpError};
-use crate::utils::AttestationReportExt;
 
 /// Indicate whether attestation verification should happen with
 /// certs retrieved from SEV-SNP device or KDS or custom.

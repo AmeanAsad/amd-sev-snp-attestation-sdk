@@ -1,4 +1,4 @@
-use sev_snp::SevSnp;
+use sev_snp::{AttestationReport, SevSnp};
 
 fn main() {
     // Initialise an SevSnp object
@@ -6,11 +6,14 @@ fn main() {
 
     // Retrieve an attestation report with default options passed to the hardware device
     let (report, _) = sev_snp.get_attestation_report().unwrap();
+    let raw_bytes = bincode::serialize(&report.clone())?;
+    println!("Attestation_bytes {}", raw_bytes);
+    // println!("Attestation Report: {}", report);
 
-    println!("Attestation Report: {}", report);
+    let rep: AttestationReport = bincode::deserialize(&raw_bytes.clone())?;
 
     // Verify the attestation report
-    sev_snp.verify_attestation_report(&report, None).unwrap();
+    sev_snp.verify_attestation_report(&rep, None).unwrap();
 
     println!("Verification successful!");
 }
